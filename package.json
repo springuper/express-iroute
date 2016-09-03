@@ -1,0 +1,27 @@
+{
+  "name": "express-iroute",
+  "version": "0.1.0",
+  "description": "express route integrated with interceptor system",
+  "main": "lib/route.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/springuper/express-iroute.git"
+  },
+  "keywords": [
+    "express",
+    "route",
+    "interceptor"
+  ],
+  "author": "spring",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/springuper/express-iroute/issues"
+  },
+  "homepage": "https://github.com/springuper/express-iroute#readme"
+}
