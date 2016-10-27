@@ -1,5 +1,8 @@
 # express-iroute
 
+[![Build Status](https://travis-ci.org/springuper/express-iroute.svg?branch=master)](https://travis-ci.org/springuper/express-iroute)
+[![npm version](https://badge.fury.io/js/express-iroute.svg)](https://badge.fury.io/js/express-iroute)
+
 An express route integrated with an simple interceptor system.
 
 # Installation
