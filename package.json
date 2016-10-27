@@ -23,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/springuper/express-iroute/issues"
   },
-  "homepage": "https://github.com/springuper/express-iroute#readme"
+  "homepage": "https://github.com/springuper/express-iroute#readme",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6"
+  },
+  "dependencies": {
+    "debug": "^2.2.0"
+  }
 }
