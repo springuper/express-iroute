@@ -60,7 +60,7 @@ module.exports = [
 
 This module heavily borrows idea and code from [express-autoroute](https://github.com/stonecircle/express-autoroute), so routes definition is exactly the same with it. Only one thing is different: you can config `interceptors` or `ignoreInterceptors` to overwrite interceptor-level configuration.
 
-```
+```js
 // routes/login/login.js
 
 module.exports = [

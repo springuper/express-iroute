@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "lint": "eslint lib test"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,11 @@
   },
   "homepage": "https://github.com/springuper/express-iroute#readme",
   "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
     "express": "^4.14.0",
     "mocha": "^3.1.2",
     "sinon": "^1.17.6"
