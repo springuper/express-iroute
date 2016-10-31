@@ -95,7 +95,7 @@ Every route module can export an route object or a list of route object.
 module.exports = {
   path: '/category',
   method: 'GET',
-  handler: function (res, req, next) { ... }
+  handler: function (req, res, next) { ... }
 };
 
 // list of route objects
@@ -103,13 +103,13 @@ module.exports = [
   {
     path: '/category/:id',
     method: 'GET',
-    handler: function (res, req, next) { ... }
+    handler: function (req, res, next) { ... }
   },
   {
     path: '/category/:id',
     method: 'POST',
     interceptors: 'REQUIRE_LOGIN',
-    handler: function (res, req, next) { ... }
+    handler: function (req, res, next) { ... }
   },
 ];
 ```
