@@ -1,6 +1,6 @@
 {
   "name": "express-iroute",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "express route integrated with interceptor system",
   "main": "lib/route.js",
   "directories": {
