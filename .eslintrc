@@ -1,15 +1,10 @@
 {
-  "extends": "airbnb",
-  "plugins": [
-  ],
   "env": {
-    "node": true,
-    "mocha": true
+    "mocha": true,
+    "node": true
   },
+  "extends": "airbnb-base",
   "rules": {
-    "prefer-rest-params": 0,
-    "no-param-reassign": 0,
-    "func-names": 0,
-    "strict": 0
+    "no-param-reassign": 0
   }
 }

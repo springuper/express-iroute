@@ -2,40 +2,40 @@
   "name": "express-iroute",
   "version": "0.1.2",
   "description": "express route integrated with interceptor system",
-  "main": "lib/route.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "mocha test",
-    "lint": "eslint lib test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/springuper/express-iroute.git"
-  },
   "keywords": [
     "express",
     "route",
     "interceptor"
   ],
-  "author": "spring",
-  "license": "MIT",
+  "homepage": "https://github.com/springuper/express-iroute#readme",
   "bugs": {
     "url": "https://github.com/springuper/express-iroute/issues"
   },
-  "homepage": "https://github.com/springuper/express-iroute#readme",
-  "devDependencies": {
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
-    "express": "^4.14.0",
-    "mocha": "^3.1.2",
-    "sinon": "^1.17.6"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/springuper/express-iroute.git"
+  },
+  "license": "MIT",
+  "author": "Chun Shang <springuper@gmail.com>",
+  "main": "lib/route.js",
+  "scripts": {
+    "lint": "eslint --cache ./lib ./test",
+    "test": "mocha ./test/**/*.spec.js",
+    "test:ci": "nyc --reporter=html --reporter=text mocha ./test/**/*.spec.js"
   },
   "dependencies": {
-    "debug": "^2.2.0"
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "express": "^4.18.1",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "sinon": "^14.0.0"
+  },
+  "engines": {
+    "node": ">= 16.0.0"
   }
 }

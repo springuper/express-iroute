@@ -5,13 +5,21 @@
 
 An express route integrated with an simple interceptor system.
 
-# Installation
+## Installation
+
+- NPM
 
 ```bash
 $ npm install express-iroute
 ```
 
-# Usage
+- Yarn
+
+```bash
+$ yarn add express-iroute
+```
+
+## Usage
 
 ## Define interceptors
 
@@ -24,30 +32,32 @@ module.exports = [
   {
     flag: 'REQUIRE_MOBILE',
     path: '/*',
-    preHandler: function (req, res, next) {
+    preHandler(req, res, next) {
       if (req.headers['user-agent'].indexOf('mobile') === -1) {
-        return res.redirect('http://www.foo.com');
+        res.redirect('http://www.foo.com');
+        return;
       }
       next();
-    }
+    },
   },
   {
     flag: 'REQUIRE_LOGIN',
     path: /^\/(?!login)/,
-    preHandler: function (req, res, next) {
-      var userInfo = util.getUserInfo(req);
+    preHandler(req, res, next) {
+      const userInfo = userService.getUserInfo(req);
       if (!userInfo) {
-        return res.redirect('/login?redirecturl=' + encodeURIComponent(req.url));
+        res.redirect(`/login?redirecturl=${encodeURIComponent(req.url)}`);
+        return;
       }
       next();
-    }
+    },
   },
   {
     flag: 'REQUIRE_CSRF',
-    preHandler: function (req, res, next) {
+    preHandler(req, res, next) {
       // do some csrf check
-    }
-  }
+    },
+  },
 ];
 ```
 
@@ -82,7 +92,7 @@ module.exports = [
     path: '/randomcode',
     ignoreInterceptors: 'REQUIRE_LOGIN',
     handler: randomcodePngController,
-  }
+  },
 ];
 ```
 
@@ -92,24 +102,32 @@ Every route module can export an route object or a list of route object.
 
 ```js
 // single route object
+
 module.exports = {
   path: '/category',
   method: 'GET',
-  handler: function (req, res, next) { ... }
+  handler(req, res, next) {
+    // do something...
+  },
 };
 
 // list of route objects
+
 module.exports = [
   {
     path: '/category/:id',
     method: 'GET',
-    handler: function (req, res, next) { ... }
+    handler(req, res, next) {
+      // do something...
+    },
   },
   {
     path: '/category/:id',
     method: 'POST',
     interceptors: 'REQUIRE_LOGIN',
-    handler: function (req, res, next) { ... }
+    handler(req, res, next) {
+      // do something...
+    },
   },
 ];
 ```
@@ -129,21 +147,23 @@ Route API is just a simple wrapper of express route methods, please refer to its
 ## Make it works
 
 ```js
-var express = require('express'),
-  iroute = require('express-iroute'),
-  interceptors = require('./interceptors');
+const express = require('express');
+const iroute = require('express-iroute');
 
-var app = express();
+const interceptors = require('./interceptors');
+
+const app = express();
+
 iroute(app, {
-  interceptors: interceptors,
-  routesDir: './routes'
+  interceptors,
+  routesDir: './routes',
 });
 ```
 
-# Special Thanks
+## Special Thanks
 
-Thanks for good ideas from  [express-autoroute](https://github.com/stonecircle/express-autoroute) and [HandlerInterceptor](http://docs.spring.io/autorepo/docs/spring/3.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html) from SpringMVC.
+Thanks for good ideas from [express-autoroute](https://github.com/stonecircle/express-autoroute) and [HandlerInterceptor](http://docs.spring.io/autorepo/docs/spring/3.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html) from SpringMVC.
 
-# License
+## License
 
 [MIT](https://github.com/pillarjs/csrf/blob/master/LICENSE)

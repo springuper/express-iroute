@@ -1,15 +1,15 @@
 module.exports = [
   {
     path: '/category',
-    handler: function (req, res) {
+    handler(req, res) {
       res.json([]);
-    }
+    },
   },
   {
     path: '/category/:id',
     method: 'POST',
-    handler: function (req, res) {
+    handler(req, res) {
       res.json({});
-    }
-  }
+    },
+  },
 ];
