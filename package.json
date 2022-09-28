@@ -16,7 +16,7 @@
     "url": "git+https://github.com/springuper/express-iroute.git"
   },
   "license": "MIT",
-  "author": "springuper <springuper@gmail.com>",
+  "author": "Chun Shang <springuper@gmail.com>",
   "main": "lib/route.js",
   "scripts": {
     "lint": "eslint --cache ./lib ./test",
