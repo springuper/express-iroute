@@ -15,11 +15,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  unit-test:
+  lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version: [16]
     steps:
       - uses: actions/checkout@v3
 
@@ -27,10 +24,27 @@ jobs:
         with:
           always-auth: true
           cache: 'yarn'
-          node-version: ${{ matrix.version }}
+          node-version: 16
 
       - run: |
           yarn install --frozen-lockfile --no-progress
 
       - run: |
-          yarn run test
+          yarn run lint
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          always-auth: true
+          cache: 'yarn'
+          node-version: 16
+
+      - run: |
+          yarn install --frozen-lockfile --no-progress
+
+      - run: |
+          yarn run test:ci
