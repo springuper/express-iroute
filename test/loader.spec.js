@@ -1,9 +1,13 @@
-const assert = require('assert');
+const chai = require('chai');
 const express = require('express');
 const path = require('path');
 const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 
 const { loadDirectory } = require('../lib/loader');
+
+chai.use(sinonChai);
+const { expect } = chai;
 
 describe('#loadDirectory', () => {
   it('should load routes from directory', () => {
@@ -13,15 +17,13 @@ describe('#loadDirectory', () => {
     const stubPost = sinon.stub(app, 'post');
 
     stubGet.withArgs('api/category');
+    stubGet.withArgs('auth/login');
     stubPost.withArgs('api/category/:id');
 
-    stubGet.withArgs('auth/login');
+    loadDirectory(path.join(__dirname, 'fixtures/default_routes'), '', app, {});
 
-    loadDirectory(path.resolve(__dirname, 'fixtures'), '', app, {});
-
-    assert(stubGet.withArgs('/api/category').calledOnce);
-    assert(stubPost.withArgs('/api/category/:id').calledOnce);
-
-    assert(stubGet.withArgs('/auth/login').calledOnce);
+    expect(stubGet.withArgs('/api/category')).to.have.been.calledOnce;
+    expect(stubGet.withArgs('/auth/login')).to.have.been.calledOnce;
+    expect(stubPost.withArgs('/api/category/:id')).to.have.been.calledOnce;
   });
 });
