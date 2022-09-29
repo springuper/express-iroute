@@ -13,8 +13,15 @@
     }
   ],
   "rules": {
-    "global-require": 0,
-    "import/no-dynamic-require": 0,
-    "no-param-reassign": 0
+    "global-require": "off",
+    "import/no-dynamic-require": "off",
+    "no-param-reassign": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ]
   }
 }
