@@ -1,6 +1,6 @@
 module.exports = {
-  path: 'login',
-  handler(req, res) {
+  handler: (req, res) => {
     res.json({});
   },
+  path: 'login',
 };
