@@ -338,7 +338,7 @@ describe('lib/index', () => {
         .then((response) => {
           expect(response.body).to.deep.equal({
             flags: 'PATH_WITHOUT_SLASH, PATH_WITH_SLASH, PATH_WTIH_WILDCARD, PATH_WTIH_PARAM',
-            id: 200
+            id: 200,
           });
         });
 
