@@ -16,9 +16,10 @@ module.exports = [
   },
   {
     handler: (req, res) => {
-      res.status(200).json({ flags: req.interceptorFlags.join(', '), id: req.params.id });
+      res.status(200).json({ flags: req.interceptorFlags.join(', '), id: Number(req.params.userId) });
     },
+    method: 'POST',
     // basic rules included in "path-to-regexp" can also work for "path"
-    path: '/:id(\\d+)',
+    path: '/:userId(\\d+)',
   },
 ];

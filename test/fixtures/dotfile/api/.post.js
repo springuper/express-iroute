@@ -1,3 +1,4 @@
+// this file should be ignored by "express-iroute"
 module.exports = [
   {
     handler: (req, res) => {

@@ -1,5 +1,6 @@
 module.exports = [
   {
+    //
     handler: (err, _res, res, _next) => {
       if (err) {
         res.status(400).send('Authorization Failed');
