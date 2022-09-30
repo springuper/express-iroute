@@ -206,7 +206,7 @@ describe('lib/index', () => {
   });
 
   describe('fixture route dir - error handler', () => {
-    it('should call "pre handler" first when a request comes with matched "interceptors"', async () => {
+    it('should call "pre handler" first when a request comes with matched "interceptors" handler', async () => {
       const iroute = require('../lib');
 
       iroute(app, {
@@ -338,7 +338,7 @@ describe('lib/index', () => {
         .then((response) => {
           expect(response.body).to.deep.equal({
             flags: 'PATH_WITHOUT_SLASH, PATH_WITH_SLASH, PATH_WTIH_WILDCARD, PATH_WTIH_PARAM',
-            id: 200,
+            id: 200
           });
         });
 
