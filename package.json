@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "eslint --cache ./lib ./test",
     "test": "mocha ./test/**/*.spec.js",
-    "test:ci": "nyc --reporter=html --reporter=text mocha ./test/**/*.spec.js"
+    "test:coverage": "nyc --reporter=html --reporter=text yarn run test"
   },
   "dependencies": {
     "debug": "^4.3.4"
