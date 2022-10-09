@@ -333,10 +333,10 @@ describe('lib/index', () => {
         });
 
       await supertest(app)
-        .post('/api/user/200')
+        .post('/api/user/200?test=abc#123')
         .then((response) => {
           expect(response.body).to.deep.equal({
-            flags: 'PATH_WITHOUT_SLASH, PATH_WITH_SLASH, PATH_WTIH_WILDCARD, PATH_WTIH_PARAM',
+            flags: 'PATH_WTIH_WILDCARD, PATH_WTIH_PARAM',
             id: 200,
           });
         });
@@ -348,8 +348,7 @@ describe('lib/index', () => {
             [method]('/api/user/flags')
             .then((response) => {
               expect(response.body).to.deep.equal({
-                flags:
-                  'PATH_WITHOUT_SLASH, PATH_WITH_SLASH, PATH_WTIH_WILDCARD, REGEXP_PATH, REGEXP_PATH_NEGATIVE_LOOKAHEAD',
+                flags: 'PATH_WTIH_WILDCARD, REGEXP_PATH, REGEXP_PATH_NEGATIVE_LOOKAHEAD',
               });
             })
         )
@@ -388,7 +387,7 @@ describe('lib/index', () => {
           supertest(app)
             [method]('/api/user/flags')
             .then((response) => {
-              expect(response.body).to.deep.equal({ flags: 'USER_1, USER_FLAG_1, USER_FLAG_2' });
+              expect(response.body).to.deep.equal({ flags: 'USER_FLAG_1, USER_FLAG_2' });
             })
         )
       );
