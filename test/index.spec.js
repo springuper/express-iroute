@@ -302,8 +302,7 @@ describe('lib/index', () => {
           },
           {
             flag: 'PATH_WITH_SLASH',
-            // this should be equal to "/api/user"
-            path: '/api/user/',
+            path: '/api/user/', // should be equal to "/api/user"
           },
           {
             flag: 'PATH_WTIH_WILDCARD',
