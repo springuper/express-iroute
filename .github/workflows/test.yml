@@ -50,18 +50,18 @@ jobs:
           yarn run test:coverage
 
       - run: |
-          yarn nyc report --exclude-after-remap=false --reporter=json-summary
+          yarn nyc report --exclude-after-remap=false --reporter=lcov
 
-      # upload "coverage-summary.json" from default branch
+      # upload "lcov.info" from default branch
       - uses: actions/upload-artifact@v3
         continue-on-error: true
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         with:
           if-no-files-found: error
           name: coverage-summary
-          path: ./coverage/coverage-summary.json
+          path: ./coverage/lcov.info
 
-      # download default branch's "coverage-summary.json" for each pr
+      # download default branch's "lcov.info" for each pr
       - uses: dawidd6/action-download-artifact@v2
         continue-on-error: true
         if: github.ref != format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'pull_request'
@@ -72,50 +72,12 @@ jobs:
           workflow: test.yml
 
       # generate code coverage report for each pr
-      - uses: sidx1024/report-nyc-coverage-github-action@v1.2.6
+      - uses: romeovs/lcov-reporter-action@master
         continue-on-error: true
         id: coverage
         if: github.ref != format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'pull_request'
         with:
-          base_coverage_file: ./coverage/base/coverage-summary.json
-          coverage_file: ./coverage/coverage-summary.json
-
-      # generate code coverage badge
-      - uses: emibcn/badge-action@v1.2.1
-        continue-on-error: true
-        with:
-          label: Coverage
-          path: .github/badges/coverage.svg
-          status: ${{ steps.coverage.outputs.total_lines_coverage_percent_raw }}
-
-      # check whether code coverage badge has changed
-      - uses: tj-actions/changed-files@v32
-        continue-on-error: true
-        id: changed_files
-        with:
-          files: |
-            .github/badges/coverage.svg
-
-      - uses: actions/upload-artifact@v3
-        continue-on-error: true
-        if: steps.changed_files.outputs.any_changed == 'true'
-        with:
-          name: coverage-badge
-          path: .github/badges/coverage.svg
-          if-no-files-found: error
-
-      # commit code coverage badge into current workflow and push them to the remote
-      - continue-on-error: true
-        if: steps.changed_files.outputs.any_changed == 'true'
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .github/badges/coverage.svg
-          git commit -m "chore: update .github/badges/coverage.svg"
-
-      - uses: ad-m/github-push-action@master
-        continue-on-error: true
-        if: steps.changed_files.outputs.any_changed == 'true'
-        with:
-          branch: ${{ github.ref }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-base: ./coverage/base/lcov.info
+          lcov-file: ./coverage/lcov.info
+          working-directory: ./
