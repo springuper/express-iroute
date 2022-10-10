@@ -17,6 +17,9 @@
   },
   "license": "MIT",
   "author": "Chun Shang <springuper@gmail.com>",
+  "contributors": [
+    "Pinzhang Huang <mr.pinzhang@outlook.com>"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint --cache ./lib ./test",
