@@ -1,11 +1,15 @@
 # express-iroute
 
-[![Build Status](https://travis-ci.org/springuper/express-iroute.svg?branch=master)](https://travis-ci.org/springuper/express-iroute)
-[![npm version](https://badge.fury.io/js/express-iroute.svg)](https://badge.fury.io/js/express-iroute)
+![github package.json version](https://img.shields.io/github/package-json/v/springuper/express-iroute)
+![libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/express-iroute)
+![node-current](https://img.shields.io/node/v/express-iroute)
+![npm](https://img.shields.io/npm/v/express-iroute)
 
 An express route integrated with an simple interceptor system.
 
 ## Installation
+
+NodeJS Version >= v16.0.0
 
 - NPM
 
@@ -58,10 +62,19 @@ module.exports = [
       // do some csrf check
     },
   },
+  {
+    flag: 'EXACT_REQUIRE_CORS',
+    exact: true,
+    preHandler(req, res, next) {
+      // do some cors check
+    },
+  },
 ];
 ```
 
 ### Interceptor API
+
+`exact: Boolean` can be used as the trigger to turn on or off the perfect path matching pattern, the path matching rules can be found in [path-to-regexp@v0.1.7](https://github.com/pillarjs/path-to-regexp/tree/v0.1.7) (the same version used in [express](https://github.com/expressjs/express/blob/master/package.json#L50)).
 
 `flag: String` is the identity of interceptor, used for specific route to add or ignore interceptors.
 
