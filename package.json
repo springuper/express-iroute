@@ -20,6 +20,9 @@
   "contributors": [
     "Pinzhang Huang <mr.pinzhang@outlook.com>"
   ],
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint --cache ./lib ./test",
