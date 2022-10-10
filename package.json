@@ -1,6 +1,6 @@
 {
   "name": "express-iroute",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "express route integrated with interceptor system",
   "keywords": [
     "express",
