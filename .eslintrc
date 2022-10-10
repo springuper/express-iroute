@@ -3,8 +3,25 @@
     "mocha": true,
     "node": true
   },
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.spec.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ],
   "rules": {
-    "no-param-reassign": 0
+    "global-require": "off",
+    "import/no-dynamic-require": "off",
+    "no-param-reassign": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ]
   }
 }

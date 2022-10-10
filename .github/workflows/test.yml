@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           always-auth: true
-          cache: 'yarn'
+          cache: yarn
           node-version: 16
 
       - run: |
@@ -40,11 +40,44 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           always-auth: true
-          cache: 'yarn'
+          cache: yarn
           node-version: 16
 
       - run: |
           yarn install --frozen-lockfile --no-progress
 
       - run: |
-          yarn run test:ci
+          yarn run test:coverage
+
+      - run: |
+          yarn nyc report --exclude-after-remap=false --reporter=lcov
+
+      # upload "lcov.info" from default branch
+      - uses: actions/upload-artifact@v3
+        continue-on-error: true
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        with:
+          if-no-files-found: error
+          name: coverage-summary
+          path: ./coverage/lcov.info
+
+      # download default branch's "lcov.info" for each pr
+      - uses: dawidd6/action-download-artifact@v2
+        continue-on-error: true
+        if: github.ref != format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'pull_request'
+        with:
+          branch: ${{ github.event.repository.default_branch }}
+          name: coverage-summary
+          path: ./coverage/base
+          workflow: test.yml
+
+      # generate code coverage report for each pr
+      - uses: romeovs/lcov-reporter-action@master
+        continue-on-error: true
+        id: coverage
+        if: github.ref != format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-base: ./coverage/base/lcov.info
+          lcov-file: ./coverage/lcov.info
+          working-directory: ./
