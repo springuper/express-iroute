@@ -4,6 +4,7 @@
 ![libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/express-iroute)
 ![node-current](https://img.shields.io/node/v/express-iroute)
 ![npm](https://img.shields.io/npm/v/express-iroute)
+![test](https://github.com/springuper/express-iroute/actions/workflows/test.yml/badge.svg?branch=master)
 
 An express route integrated with an simple interceptor system.
 
