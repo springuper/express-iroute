@@ -10,8 +10,6 @@ An express route integrated with an simple interceptor system.
 
 ## Installation
 
-NodeJS Version >= v16.0.0
-
 - NPM
 
 ```bash
