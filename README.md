@@ -73,7 +73,7 @@ module.exports = [
 
 ### Interceptor API
 
-`exact: Boolean` can be used as the trigger to turn on or off the perfect path matching pattern, the path matching rules can be found in [path-to-regexp@v0.1.7](https://github.com/pillarjs/path-to-regexp/tree/v0.1.7) (the same version used in [express](https://github.com/expressjs/express/blob/master/package.json#L50)).
+`exact: Boolean = true` can be used as the trigger to turn on or off the perfect path matching (it'll fallback to `true` for compatible reasons), the path matching rules can be found in [path-to-regexp@v0.1.7](https://github.com/pillarjs/path-to-regexp/tree/v0.1.7) (the same version used in [express](https://github.com/expressjs/express/blob/master/package.json#L50)).
 
 `flag: String` is the identity of interceptor, used for specific route to add or ignore interceptors.
 
